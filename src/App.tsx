@@ -1,8 +1,12 @@
+import Navbar from "./components/navbar.comp";
+import HeroSection from "./pages/home/sections/hero/hero.sections";
+
 function App() {
   return (
-    <>
-      <p>boilerplate alwisusilo</p>
-    </>
+    <div className="relative">
+      <Navbar />
+      <HeroSection />
+    </div>
   );
 }
 
