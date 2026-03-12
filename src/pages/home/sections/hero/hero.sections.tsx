@@ -1,13 +1,10 @@
 import Navbar from "@/components/navbar.comp";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
 import { useEffect, useState } from "react";
 
@@ -42,7 +39,6 @@ const bgPictures: string[] = [
   "https://res.cloudinary.com/dhjorpzhh/image/upload/f_auto,q_auto,w_1600/v1773268782/img-6351-copy1761954632_skqk0l.jpg",
 ];
 
-const data = [];
 export default function HeroSection() {
   const [counter, setCounter] = useState<number>(0);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
