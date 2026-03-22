@@ -52,20 +52,20 @@ export default function Navbar() {
   };
 
   const links = [
-    { name: "About Us", link: "/about-us" },
-    { name: "Services", link: "/services" },
-    { name: "Teams", link: "/teams" },
-    { name: "Blog List", link: "/blogs" },
+    { name: "ABOUT US", link: "/about-us" },
+    { name: "SERVICES", link: "/services" },
+    { name: "TEAMS", link: "/teams" },
+    { name: "BLOG", link: "/blogs" },
   ];
 
   const isLogOutButton: ILoginButton[] = [
-    { name: "Login", link: "/auth/Login", onClick: null },
-    { name: "Register", link: "/Register", onClick: null },
+    { name: "LOGIN", link: "/auth/Login", onClick: null },
+    { name: "REGISTER", link: "/Register", onClick: null },
   ];
 
   const isLoginButton: ILoginButton[] = [
-    { name: "Logout", link: "/", onClick: onLogOut },
-    { name: "Create Blog", link: "/auth/register", onClick: null },
+    { name: "LOGOUT", link: "/", onClick: onLogOut },
+    { name: "CREATE BLOG", link: "/auth/register", onClick: null },
   ];
 
   const [isOpen, setOpen] = useState<boolean>(false);
@@ -75,29 +75,33 @@ export default function Navbar() {
   const isLogin = !!user;
 
   return (
-    <div className="absolute overflow-hidden top-0 left-0 z-50 flex items-center justify-between h-20 lg:h-24 w-full px-5 bg-transparent text-background group hover:text-foreground transition-all duration-1200 ease-in-out ">
+    <div className="absolute overflow-hidden top-0 left-0 z-50 flex lg:px-22 items-center justify-between h-20 lg:h-24 min-w-full px-5 bg-transparent text-background group hover:text-foreground transition-all duration-1200 ease-in-out ">
       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-1000 -z-10">
         <div className="absolute bg-white inset-0 translate-y-full opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 "></div>
       </div>
-      <div className="h-16 flex items-center gap-2 lg:h-18 aspect-square text-black">
-        <img
-          src="/persija-dummy.png"
-          alt="logo persija jakarta"
-          className="object-cover aspect-square h-14 lg:h-18"
-        />
-      </div>
-      {/* ini navbar di desktop mode */}
+      {/* LOGO */}
+      <Link to={"/"}>
+        <div className="h-16 flex items-center gap-2 lg:h-18 aspect-square text-black">
+          <img
+            src="/persija-dummy.png"
+            alt="logo persija jakarta"
+            className="object-cover aspect-square h-14 lg:h-18"
+          />
+        </div>
+      </Link>
+      {/* MENU DESKTOP */}
       <div className="lg:flex hidden lg:gap-5 font-semibold w-full  justify-center ">
         {links.map((a) => (
           <div
             key={a.name}
-            className="hover:text-primary hover:duration-150 drop-shadow-[0_0_1px_rgba(0,0,0,1)] group-hover:drop-shadow-none transition-all duration-890 ease-in-out  "
+            className="hover:text-primary hover:duration-150 drop-shadow-[0_0_1px_rgba(0,0,0,1)] group-hover:drop-shadow-none transition-all duration-890 ease-in-out text-[18px]  "
           >
             <Link to={a.link}>{a.name}</Link>
           </div>
         ))}
       </div>
-      {/* hamburger yang bakal hidden kalo lg */}
+
+      {/* HAMBURGER MENU */}
       <div className="block lg:hidden ">
         <Drawer direction="top">
           <DrawerTrigger onClick={() => setOpen(!isOpen)} asChild>
@@ -149,12 +153,14 @@ export default function Navbar() {
           </DrawerContent>
         </Drawer>
       </div>
+
+      {/* LOGIN DESKTOP */}
       <div className=" hidden lg:flex items-center justify-center h-20">
         {(isLogin ? isLoginButton : isLogOutButton).map((a) => (
           <Button
             key={a.name}
             onClick={a.onClick ? () => a.onClick?.() : undefined}
-            className="overflow-hidden relative h-9 w-auto bg-transparent group/btn rounded-none "
+            className="overflow-hidden text-[18px] relative h-10 w-auto bg-transparent group/btn rounded-none px-3 ml-2"
           >
             <div className="absolute inset-0 bg-primary -z-10 translate-y-full group-hover/btn:translate-y-0  duration-300 ease-in-out transition-all"></div>
             <div className=" drop-shadow-[0_0_1px_rgba(0,0,0,1)] group-hover:drop-shadow-none transition-all group-hover/btn:text-background group-hover/btn:duration-400 group-hover:text-foreground duration-1200 ease-in-out">

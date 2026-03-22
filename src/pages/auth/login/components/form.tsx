@@ -2,7 +2,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { loginSchema } from "./login.schema";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Eye, EyeClosed } from "lucide-react";
 import { loginApi, type ILoginParams } from "@/api/auth/login.api";
 import { useAuthStore } from "@/store/auth/auth.store";
@@ -14,6 +14,7 @@ export default function LoginForm() {
   const [apiError, setApiError] = useState<string>("");
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
+  const inputRef = useRef<HTMLInputElement | null>(null);
   const setSession = useAuthStore((state) => state.setSession);
   const navigate = useNavigate();
   const onSubmit = async (values: ILoginParams) => {
@@ -42,6 +43,10 @@ export default function LoginForm() {
     }
   };
 
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+
   return (
     <div className="min-h-80 z-10 h-full w-full max-w-120 min-w-70 rounded-[10px] items-center flex flex-col p-4 drop-shadow-2xl justify-center bg-background">
       <h1 className="font-bold text-2xl">Welcome</h1>
@@ -57,6 +62,7 @@ export default function LoginForm() {
 
               <Field
                 as={Input}
+                ref={inputRef}
                 name="email"
                 id="email"
                 placeholder="example@example.com"
