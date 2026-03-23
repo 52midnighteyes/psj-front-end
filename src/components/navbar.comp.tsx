@@ -53,7 +53,7 @@ export default function Navbar() {
 
   const links = [
     { name: "ABOUT US", link: "/about-us" },
-    { name: "SERVICES", link: "/services" },
+    { name: "ACADEMY", link: "/academy" },
     { name: "TEAMS", link: "/teams" },
     { name: "BLOG", link: "/blogs" },
   ];
