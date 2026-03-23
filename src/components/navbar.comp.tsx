@@ -60,7 +60,7 @@ export default function Navbar() {
 
   const isLogOutButton: ILoginButton[] = [
     { name: "LOGIN", link: "/auth/Login", onClick: null },
-    { name: "REGISTER", link: "/Register", onClick: null },
+    // { name: "REGISTER", link: "/Register", onClick: null },
   ];
 
   const isLoginButton: ILoginButton[] = [
@@ -110,10 +110,10 @@ export default function Navbar() {
             </button>
           </DrawerTrigger>
           <DrawerContent className="bg-background px-6 py-0 ">
-            <div className="  flex items-center justify-between h-20 ">
+            <div className=" flex items-center justify-between h-20 ">
               <div className="h-14 flex items-center aspect-square">
                 <img
-                  src="persija-dummy.png"
+                  src="/persija-dummy.png"
                   alt="logo persija jakarta"
                   className="object-cover"
                 />
@@ -144,7 +144,7 @@ export default function Navbar() {
               {(isLogin ? isLoginButton : isLogOutButton).map((a) => (
                 <Button
                   onClick={a.onClick ? () => a.onClick?.() : undefined}
-                  className="h-10 w-32 hover:bg-background hover:border-primary border-2 hover:text-primary hover:font-bold"
+                  className="h-10 w-full hover:bg-background hover:border-primary border-2 hover:text-primary hover:font-bold"
                 >
                   <Link to={a.link}>{a.name}</Link>
                 </Button>

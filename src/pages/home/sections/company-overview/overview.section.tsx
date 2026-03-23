@@ -3,51 +3,51 @@ export function OverviewSection() {
     {
       title: "Beyond Football",
       content:
-        "We are more than a football club. We carry history, belief, and identity that have grown across generations. More than competing on the pitch, we represent a presence deeply rooted in Indonesian football, inspiring pride, strengthening communities, and continuing to define what Persija means to so many people.",
+        "We are more than a football club. We carry legacy, identity, and pride shaped across generations. What we represent goes far beyond the pitch, living in the hearts of our people and holding a place that continues to matter deeply in Indonesian football.",
       image:
         "https://res.cloudinary.com/dhjorpzhh/image/upload/v1773268782/dsc00865-copy1767172478_1_vdkh9p.jpg",
     },
     {
       title: "Youth Development",
       content:
-        "Persija has produced many young talents who have grown into important parts of the game, and we remain fully committed to continuing that path. Through structured development and long-term vision, we focus on nurturing the next generation with the quality, character, discipline, and mentality needed to carry this club forward.",
+        "We believe the future of this club must be built with purpose. Through youth development, we nurture talent with discipline, character, and mentality, creating a pathway for the next generation to grow, compete, and carry our standards forward with pride.",
       image:
         "https://res.cloudinary.com/dhjorpzhh/image/upload/v1774177418/whatsapp-image-2024-10-20-at-1257061729408157_xevrkj.jpg",
     },
     {
       title: "Pride & Identity",
       content:
-        "Persija is a passion that lives far beyond the game. It becomes one identity shared by thousands of people, united by the same pride, loyalty, and love. Across different backgrounds and generations, Persija brings us together and turns that connection into something greater than football itself.",
+        "We are united by more than football. We share an identity built on pride, loyalty, and belonging. Across generations and backgrounds, this club brings people together through a bond that lives beyond the game and becomes part of who we are.",
       image:
         "https://res.cloudinary.com/dhjorpzhh/image/upload/v1774177383/dsc097001724294619_km5gjp.jpg",
     },
   ];
 
   return (
-    <section className="relative min-w-full p-8 lg:px-22 min-h-220 items-start bg-secondary flex text-center justify-center">
-      {/* <img
+    <section className="relative pb-20 min-w-screen p-8 lg:px-22 min-h-220 items-start bg-primary flex text-center justify-center">
+      <img
         src="https://res.cloudinary.com/dhjorpzhh/image/upload/v1774187413/db1084e5-e807-44aa-a085-4d79cec7efda_kdqfg9.jpg"
-        className="absolute inset-0 h-full w-full opacity-10 object-cover z-0"
-      /> */}
+        className="absolute inset-0 h-full w-full opacity-15 object-cover z-0"
+      />
 
       <div className="relative z-10 flex flex-col gap-8 lg:flex-row justify-between ">
         <div className="flex flex-col gap-3 w-full text-left lg:max-w-1/2">
-          <h1 className="text-[24px] text-left font-semibold opacity-65">
+          <h1 className="text-[24px] text-left text-secondary font-semibold opacity-80">
             PERSIJA JAKARTA
           </h1>
-          <p className="text-[35px] text-primary font-semibold">
+          <p className="text-[35px] text-background font-semibold">
             We are more than a club—
-            <span className="text-foreground font-normal text-">
+            <span className=" text-secondary font-normal text-">
               we represent ambition, legacy, identity, and a passion that lives
               far beyond the game.
             </span>
           </p>
         </div>
 
-        <div className="flex flex-col gap-3 w-full text-white lg:max-w-1/2">
+        <div className="flex flex-col gap-6 w-full text-foreground lg:max-w-1/2">
           {companyOverviewData.map((a, i) => (
             <div
-              className="flex flex-col bg-primary p-6 gap-4 text-backgroun rounded-2xl items-center lg:min-h-70 lg:flex-row"
+              className="flex flex-col bg-background p-6 gap-4 text-backgroun rounded-2xl items-cente transition-all duration-300 ease-out hover:scale-105 hover:shadow-[0_0_25px_rgba(0,0,0,0.15)] lg:min-h-70 lg:flex-row"
               key={i}
             >
               <div className=" w-full h-full lg:max-w-2/5 overflow-hidden rounded-2xl ">

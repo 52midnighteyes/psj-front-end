@@ -61,7 +61,7 @@ export default function HeroSection() {
 
   return (
     <section
-      className="relative bg-cover bg-no-repeat bg-top flex min-h-160 min-w-full flex-col lg:px-22 items-center justify-center bg-primary lg:min-h-230 p-6"
+      className="relative bg-cover bg-no-repeat bg-top flex min-h-160 min-w-screen flex-col lg:px-22 items-center justify-center bg-primary lg:min-h-230 p-6"
       style={{
         backgroundImage: isLoaded ? `url('${activeBlog.image}')` : "none",
       }}
@@ -90,7 +90,10 @@ export default function HeroSection() {
         <div className="absolute gap-2 bottom-20 text-background text-[20px]">
           <div className="flex gap-2">
             {blogs.map((_a, index) => (
-              <div className="relative aspect-square flex items-center">
+              <div
+                key={index}
+                className="relative aspect-square flex items-center"
+              >
                 <div
                   className={
                     index === counter
