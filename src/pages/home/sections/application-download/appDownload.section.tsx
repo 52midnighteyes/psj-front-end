@@ -4,20 +4,24 @@ import { toast } from "sonner";
 
 export function AppDownload() {
   return (
-    <section className="relative overflow-hidden min-h-80 min-w-screen bg-cover bg-[url('https://res.cloudinary.com/dhjorpzhh/image/upload/v1774186912/93aa0233-3564-4a25-986f-932fd06d0962_jifopv.jpg')]">
-      <div className="absolute z-0 items-start inset-0 bg-[url('grad2.png')] opacity-40 bg-cover bg-bottom"></div>
+    <section className="relative overflow-hidden min-h-80 min-w-screen bg-cover bg-primary">
+      <div className="absolute z-1 items-start inset-0 bg-[url('/grad2.png')] opacity-40 bg-cover bg-bottom"></div>
+      <img
+        src="https://res.cloudinary.com/dhjorpzhh/image/upload/v1774186912/93aa0233-3564-4a25-986f-932fd06d0962_jifopv.jpg"
+        className="absolute inset-0 opacity-20 object-bottom z-0"
+      />
 
-      <div className="relative gap-5 h-full z-10 w-full flex flex-col text-center p-8 lg:p-20 items-center uppercase font-semibold justify-center text-background">
+      <div className="relative gap-5 h-full z-10 w-full flex flex-col text-center p-8 lg:p-20 items-center uppercase font-bold justify-center text-background">
         <div className="mb-4">
           <h1 className="text-[60px]">Persija, in your hands.</h1>
-          <p className="text-[24px] font-normal">
+          <p className="text-[24px] font-medium">
             Stay updated with club news, match updates, ticketing information,
             and exclusive offers.
           </p>
         </div>
         <Button
           onClick={() => toast("soon", { position: "top-right" })}
-          className="text-[16px] p-8 bg-background text-foreground hover:bg-primary hover:text-background transition-all duration-300 hover:scale-105"
+          className="text-[16px] font-semibold hover:font-bold p-8 bg-background text-foreground transition-all duration-300 hover:scale-105"
         >
           DOWNLOAD APP! <ArrowRight />
         </Button>

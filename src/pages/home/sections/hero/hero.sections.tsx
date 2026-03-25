@@ -67,7 +67,7 @@ export default function HeroSection() {
       }}
     >
       {/* gradasi hitam transparan */}
-      <div className="absolute z-0 items-start inset-0 bg-[url(grad2.png)] opacity-60 bg-cover bg-bottom"></div>
+      <div className="absolute z-0 items-start inset-0 bg-[url(/grad2.png)] opacity-60 bg-cover bg-bottom"></div>
 
       {activeBlog && (
         <div className="lg:flex flex-col gap-6 absolute  bottom-1/6 items-start text-background hidden left-22 z-10 min-w-1/5 max-w-3/6 p-4 text-left">
@@ -115,7 +115,9 @@ export default function HeroSection() {
         </div>
       </Pagination>
 
-      <MobileNewsCarousel blogs={blogs} />
+      <div className="absolute bottom-10 left-0">
+        <MobileNewsCarousel blogs={blogs} />
+      </div>
     </section>
   );
 }

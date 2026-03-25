@@ -54,9 +54,9 @@ export function NextMatchSection() {
   }
 
   return (
-    <section className="relative min-h-80 min-w-screen text-foreground bg-secondary">
+    <section className="relative min-w-screen text-foreground bg-secondary">
       <div className="h-full w-full flex justify-center">
-        <div className="min-h-80 flex w-fit justify-center  flex-col  items-center">
+        <div className="min-h-80 flex w-fit justify-center flex-col  items-center">
           <div className="flex min-w-79 gap-4  ">
             <div className="aspect-square max-h-22 ">
               <img

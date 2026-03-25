@@ -54,7 +54,7 @@ export default function Navbar() {
   const links = [
     { name: "ABOUT US", link: "/about-us" },
     { name: "ACADEMY", link: "/academy" },
-    { name: "TEAMS", link: "/teams" },
+    { name: "MANAGEMENT", link: "/management" },
     { name: "BLOG", link: "/blogs" },
   ];
 
@@ -75,7 +75,7 @@ export default function Navbar() {
   const isLogin = !!user;
 
   return (
-    <div className="absolute overflow-hidden top-0 left-0 z-50 flex lg:px-22 items-center justify-between h-20 lg:h-24 min-w-full px-5 bg-transparent text-background group hover:text-foreground transition-all duration-1200 ease-in-out ">
+    <div className="absolute overflow-hidden top-0 left-0 z-50 flex lg:px-22 items-center justify-between h-20 lg:h-24 min-w-screen px-5 bg-transparent text-background group hover:text-foreground transition-all duration-1200 ease-in-out ">
       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-1000 -z-10">
         <div className="absolute bg-white inset-0 translate-y-full opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 "></div>
       </div>
@@ -83,7 +83,7 @@ export default function Navbar() {
       <Link to={"/"}>
         <div className="h-16 flex items-center gap-2 lg:h-18 aspect-square text-black">
           <img
-            src="/persija-dummy.png"
+            src="https://res.cloudinary.com/dhjorpzhh/image/upload/v1774396224/logo_persija_no_star_z6qj17.webp"
             alt="logo persija jakarta"
             className="object-cover aspect-square h-14 lg:h-18"
           />
@@ -113,7 +113,7 @@ export default function Navbar() {
             <div className=" flex items-center justify-between h-20 ">
               <div className="h-14 flex items-center aspect-square">
                 <img
-                  src="/persija-dummy.png"
+                  src="https://res.cloudinary.com/dhjorpzhh/image/upload/v1774396224/logo_persija_no_star_z6qj17.webp"
                   alt="logo persija jakarta"
                   className="object-cover"
                 />

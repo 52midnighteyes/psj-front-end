@@ -19,7 +19,10 @@ export const products = [
 ];
 export function ShopSection() {
   return (
-    <section className="relative min-w-screen p-8 md:px-22 min-h-200 items-center overflow-hidden bg-secondary  flex text-center justify-center ">
+    <section className="relative min-w-screen flex-col gap-12 p-8 md:px-22 min-h-200 items-center overflow-hidden bg-secondary  flex text-center justify-center ">
+      <p className="relative z-10 text-[60px] font-bold">
+        GET <span className="text-primary">YOURS!</span>
+      </p>
       <img
         src="https://res.cloudinary.com/dhjorpzhh/image/upload/v1774187413/db1084e5-e807-44aa-a085-4d79cec7efda_kdqfg9.jpg"
         className="absolute inset-0 h-full w-full opacity-10 object-cover z-0"

@@ -13,8 +13,8 @@ interface MobileNewsCarouselProps {
 
 export function MobileNewsCarousel({ blogs }: MobileNewsCarouselProps) {
   return (
-    <div className="w-screen min-h-160 flex flex-col overflow-visible justify-end">
-      <Carousel className="w-screen lg:hidden ">
+    <div className="w-screen h-fit flex  flex-col overflow-visible justify-end">
+      <Carousel className="w-screen drop-shadow-2xl lg:hidden ">
         <CarouselContent className="-ml-3">
           {blogs.map((a) => (
             <CarouselItem

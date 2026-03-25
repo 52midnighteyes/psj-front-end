@@ -101,21 +101,34 @@ const sponsors = [
   },
 ];
 
-export function SponsorsSection() {
+type SponsorsSectionProps = {
+  color: "primary" | "secondary" | "foreground" | "background";
+};
+
+export function SponsorsSection({ color }: SponsorsSectionProps) {
   const duplicatedSponsors = [...sponsors, ...sponsors];
 
+  const bgColorClass = {
+    primary: "bg-primary",
+    secondary: "bg-secondary",
+    foreground: "bg-foreground",
+    background: "bg-background",
+  };
+
   return (
-    <section className=" min-h-12 bg-secondary overflow-hidden">
-      <ul className="flex w-max min-w-full items-center gap-15 py-6 animate-infinite-scroll">
+    <section
+      className={`${bgColorClass[color]} select-none min-h-12 overflow-hidden`}
+    >
+      <ul className="flex min-w-full w-max items-center gap-15 py-6 animate-infinite-scroll">
         {duplicatedSponsors.map((sponsor, index) => (
           <li
             key={`${sponsor.name}-${index}`}
-            className="shrink-0 hover:scale-105"
+            className="shrink-0 hover:scale-105 transition-transform"
           >
             <img
               src={sponsor.image}
               alt={sponsor.name}
-              className="w-auto object-contain h-12"
+              className="h-12 w-auto object-contain"
             />
           </li>
         ))}

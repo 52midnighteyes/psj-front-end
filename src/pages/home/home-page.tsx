@@ -3,8 +3,8 @@ import { OverviewSection } from "./sections/company-overview/overview.section";
 import HeroSection from "./sections/hero/hero.sections";
 import { NextMatchSection } from "./sections/next-match/nextMatc.section";
 import { PersijaAcademySection } from "./sections/persija-academy/persija-academy.section";
+import { ShopSection } from "./sections/shop/shop.section";
 import { SponsorsSection } from "./sections/sponsors/sponsors.section";
-import { ShopSection } from "./shop/shop.section";
 
 export default function HomePage() {
   return (
@@ -12,7 +12,7 @@ export default function HomePage() {
       <HeroSection />
       <NextMatchSection />
       <OverviewSection />
-      <SponsorsSection />
+      <SponsorsSection color={"secondary"} />
       <PersijaAcademySection />
       <AppDownload />
       <ShopSection />
