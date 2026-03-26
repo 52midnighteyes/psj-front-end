@@ -37,7 +37,7 @@ export function BenefitSection() {
       <img
         src="https://res.cloudinary.com/dhjorpzhh/image/upload/v1774247340/1854faaa-ed45-4a79-a0a4-42e6d3d70c76_mgqtuk.jpg"
         alt="Persija Academy background"
-        className="absolute inset-0 z-0 h-full w-full rotate-180 object-cover object-bottom opacity-20"
+        className="absolute inset-0 z-0 h-full w-full rotate-180 object-cover object-bottom opacity-35"
       />
 
       <div className="relative z-10 flex w-full max-w-7xl flex-col gap-14">
@@ -45,11 +45,11 @@ export function BenefitSection() {
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary opacity-80">
             Persija Academy
           </p>
-          <h2 className="max-w-4xl text-4xl font-bold uppercase leading-15 text-foreground sm:text-5xl lg:text-6xl">
+          <h2 className="w-full text-4xl font-bold uppercase leading-15 text-foreground sm:text-5xl lg:text-6xl">
             Why{" "}
-            <span className="border-b-4 border-primary text-primary">
+            <span className=" bg-primary text-background px-4">
               Persija Academy
-            </span>
+            </span>{" "}
             ?
           </h2>
         </div>
@@ -58,12 +58,17 @@ export function BenefitSection() {
           {featuredPrograms.map((program) => (
             <div
               key={program.title}
-              className="group flex flex-col items-center justify-center gap-4 rounded-2xl bg-primary p-8 text-center text-background shadow-2xl transition duration-300  hover:scale-110 lg:items-start lg:text-left"
+              className="group overflow-hidden relative flex flex-col items-center justify-center gap-4 rounded-2xl bg-primary p-8 text-center text-background shadow-2xl transition duration-300  hover:scale-110 lg:items-start lg:text-left"
             >
-              <h3 className="text-2xl font-bold uppercase leading-tight">
+              <img
+                src="https://res.cloudinary.com/dhjorpzhh/image/upload/v1774503303/52645ef9-458d-41c7-b29f-6a41dc6ae5dd_tfcm6x.jpg"
+                alt=""
+                className="absolute inset-0 z-0 opacity-10 group-hover:scale-110 duration-300 "
+              />
+              <h3 className="relative group-hover:scale-105 duration-300 z-20 text-2xl font-bold uppercase leading-tight">
                 {program.title}
               </h3>
-              <p className="text-sm leading-relaxed text-background/85 lg:text-base">
+              <p className="text-sm relative z-20 group-hover:scale-105 duration-300 leading-relaxed text-background/85 lg:text-base">
                 {program.description}
               </p>
             </div>

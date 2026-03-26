@@ -34,6 +34,7 @@ export function BlogPage() {
       try {
         const response = await getBlogBySlug(slug);
         console.log(response);
+
         if (!response) {
           setError(true);
           return;
@@ -45,10 +46,12 @@ export function BlogPage() {
         console.log(error);
       }
     };
+
     getBlog();
   }, [slug]);
 
   if (error) return <section></section>;
+
   if (!blog)
     return (
       <section className="min-w-screen min-h-screen flex flex-col items-center justify-center bg-secondary">
@@ -71,13 +74,17 @@ export function BlogPage() {
           className="absolute inset-0 z-0 h-full w-full object-top object-cover"
         />
 
-        <p className="z-10 h-fit lg:max-w-2/4 relative text-[24px] lg:text-[40px] uppercase font-semibold text-background">
-          {blog.title}
+        <div className="z-10 h-fit lg:max-w-2/4 relative">
+          <p className="text-[24px] lg:text-[40px] uppercase font-semibold text-background">
+            {blog.title}
+          </p>
+
           <div className="flex w-fit py-1 text-[9px] lg:text-[12px] font-semibold text-gray-300 uppercase gap-2">
-            <p className="flex">author: {blog.author}</p>
+            <p className="flex">{blog.author}</p>
+
             {blog.updatedAt ? null : (
               <p className="flex">
-                "published:"{" "}
+                <span>published:</span>
                 {new Date(blog.createdAt).toLocaleString("en-US", {
                   year: "numeric",
                   month: "short",
@@ -89,6 +96,7 @@ export function BlogPage() {
             )}
 
             <p>|</p>
+
             {blog.updatedAt ? (
               <p className="flex">
                 updated at:{" "}
@@ -102,29 +110,31 @@ export function BlogPage() {
               </p>
             ) : null}
           </div>
-        </p>
+        </div>
       </div>
 
       <div className="relative min-h-0 justify-between md:px-22 lg:pr-10 p-6 gap-22 flex flex-col lg:flex-row">
-        <p className="w-full lg:max-w-5/7 whitespace-pre-wrap">
+        <div className="w-full lg:max-w-5/7 whitespace-pre-wrap">
           <p className="text-[10px] mb-4 text-gray-500">
             CATEGORY: {blog.category}
           </p>
+
           {blog.content.split("\n\n").map((paragraph, index) => (
             <p key={index} className="mb-4">
               {paragraph}
             </p>
           ))}
-        </p>
+        </div>
 
         {latestLoaded ? (
           <div className="w-full hidden lg:flex flex-col gap-2 max-w-2/9">
             <p className="bg-primary drop-shadow-2xl justify-center flex font-bold p-2 text-background text-[16px]">
               LATEST NEWS
             </p>
+
             <div className="flex flex-col gap-3 ">
-              {blogs.map((a, i) => (
-                <Link to={`/blog/${a.slug}`}>
+              {blogs.map((a) => (
+                <Link key={a.slug} to={`/blog/${a.slug}`}>
                   <div className="w-full gap-4 min-h-25 flex items-center bg-secondary hover:bg-white hover:scale-105 transition-all duration-300 drop-shadow-2xl">
                     <div className="h-25 min-w-4/10 aspect-square overflow-hidden ">
                       <img

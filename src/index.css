@@ -172,29 +172,6 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-.hero {
-  background-image:
-    radial-gradient(
-      circle at top left,
-      rgba(180, 0, 1, 0.55) 0%,
-      rgba(180, 0, 1, 0) 38%
-    ),
-    radial-gradient(
-      circle at bottom left,
-      rgba(180, 0, 1, 0.4) 0%,
-      rgba(180, 0, 1, 0) 42%
-    ),
-    radial-gradient(
-      circle at bottom right,
-      rgba(180, 0, 1, 0.45) 0%,
-      rgba(180, 0, 1, 0) 38%
-    ),
-    url("/11.jpeg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
 @layer base {
   * {
     @apply border-border outline-ring/50;

@@ -12,21 +12,23 @@ type TBlogCategory =
   | "EVENT"
   | "MERCH";
 
+export type TSortBy = "createdAt" | "title";
+export type TSortOrder = "asc" | "desc";
+
 export interface IGetAllBlogsQuery {
   search?: string;
   category?: TBlogCategory;
-  page: number | 1;
-  limit: number | 10;
-  sortBy: "createdAt" | "title";
-  sortOrder: "asc" | "desc";
+  page: number;
+  limit: number;
+  sortBy: TSortBy;
+  sortOrder: TSortOrder;
 }
 
 export const searchBlogByParams = async (query: IGetAllBlogsQuery) => {
   try {
-    const response = await api.get<IApiResponse<IBlogListData>>(`/api/blog`, {
-      params: {
-        query,
-      },
+    console.log(query);
+    const response = await api.get<IApiResponse<IBlogListData>>(`/blogs`, {
+      params: query,
     });
 
     return response.data;

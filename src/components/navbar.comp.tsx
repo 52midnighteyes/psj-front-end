@@ -1,5 +1,12 @@
 import { Menu, X } from "lucide-react";
-import { Drawer, DrawerClose, DrawerContent, DrawerTrigger } from "./ui/drawer";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerTitle,
+  DrawerTrigger,
+} from "./ui/drawer";
 import { Button } from "./ui/button";
 import { Link } from "react-router";
 import { useState } from "react";
@@ -90,7 +97,7 @@ export default function Navbar() {
         </div>
       </Link>
       {/* MENU DESKTOP */}
-      <div className="lg:flex hidden lg:gap-5 font-semibold w-full  justify-center ">
+      <div className="lg:flex hidden lg:gap-5 font-semibold w-full justify-center ">
         {links.map((a) => (
           <div
             key={a.name}
@@ -103,13 +110,28 @@ export default function Navbar() {
 
       {/* HAMBURGER MENU */}
       <div className="block lg:hidden ">
-        <Drawer direction="top">
-          <DrawerTrigger onClick={() => setOpen(!isOpen)} asChild>
-            <button>
+        <Drawer direction="top" open={isOpen} onOpenChange={setOpen}>
+          <DrawerTrigger asChild>
+            <button type="button" aria-label="Open navigation menu">
               <Menu />
             </button>
           </DrawerTrigger>
-          <DrawerContent className="bg-background px-6 py-0 ">
+
+          <DrawerContent
+            className="bg-background px-6 py-0 "
+            onOpenAutoFocus={(e) => {
+              e.preventDefault();
+              const firstLink = document.querySelector(
+                "[data-drawer-first-link]",
+              ) as HTMLElement | null;
+              firstLink?.focus();
+            }}
+          >
+            <DrawerTitle className="sr-only">Navigation menu</DrawerTitle>
+            <DrawerDescription className="sr-only">
+              Mobile navigation drawer
+            </DrawerDescription>
+
             <div className=" flex items-center justify-between h-20 ">
               <div className="h-14 flex items-center aspect-square">
                 <img
@@ -120,21 +142,31 @@ export default function Navbar() {
               </div>
 
               <div className="flex items-center">
-                <DrawerClose>
-                  <X />
+                <DrawerClose asChild>
+                  <button type="button" aria-label="Close navigation menu">
+                    <X />
+                  </button>
                 </DrawerClose>
               </div>
             </div>
 
             <div>
-              {links.map((a) => (
+              {links.map((a, index) => (
                 <div
                   key={a.name}
                   className="relative overflow-hidden  h-10 items-center flex justify-between w-full font-semibold group px-4"
                 >
                   <div className="absolute inset-0 -translate-x-full  bg-primary border-primary group-hover:translate-x-0 transition-all duration-300 ease-in-out"></div>
+
                   <div className="z-10 flex justify-between w-full group-hover:text-background transition-all duration-1000 group-hover:duration-100 ease-in-out ">
-                    <Link to={a.link}>{a.name}</Link> <span>{`>`}</span>
+                    <Link
+                      className="flex justify-between w-full"
+                      to={a.link}
+                      data-drawer-first-link={index === 0 ? true : undefined}
+                      onClick={() => setOpen(false)}
+                    >
+                      {a.name} <span>{`>`}</span>
+                    </Link>
                   </div>
                 </div>
               ))}
@@ -143,10 +175,14 @@ export default function Navbar() {
             <div className="w-full flex items-center justify-center h-20 gap-5 ">
               {(isLogin ? isLoginButton : isLogOutButton).map((a) => (
                 <Button
+                  asChild
+                  key={a.name}
                   onClick={a.onClick ? () => a.onClick?.() : undefined}
-                  className="h-10 w-full hover:bg-background hover:border-primary border-2 hover:text-primary hover:font-bold"
+                  className="h-10 w-full hover:scale-105"
                 >
-                  <Link to={a.link}>{a.name}</Link>
+                  <Link to={a.link} onClick={() => setOpen(false)}>
+                    {a.name}
+                  </Link>
                 </Button>
               ))}
             </div>

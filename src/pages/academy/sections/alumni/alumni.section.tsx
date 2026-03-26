@@ -50,7 +50,7 @@ export function AlumniSection() {
           <p className="text-sm font-semibold uppercase tracking-[0.25em] opacity-70">
             Persija Academy
           </p>
-          <h2 className="text-4xl font-semibold uppercase leading-none lg:text-6xl">
+          <h2 className="text-4xl font-bold uppercase leading-none lg:text-6xl">
             Academy Alumni
           </h2>
           <p className="max-w-xl text-sm leading-relaxed opacity-80 lg:text-base">
