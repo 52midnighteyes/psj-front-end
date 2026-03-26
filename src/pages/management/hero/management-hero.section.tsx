@@ -21,7 +21,7 @@ export function ManagementHeroSection() {
 
       <div className="absolute inset-0 bg-black/45" />
 
-      <div className="relative z-10 flex w-full flex-col items-center justify-center gap-8 text-background lg:flex-row lg:gap-16">
+      <div className="relative z-10 flex w-full flex-col items-end justify-center gap-8 text-background lg:flex-row lg:gap-16">
         <div className="flex w-full max-w-md items-center justify-center overflow-hidden">
           <img
             src="https://res.cloudinary.com/dhjorpzhh/image/upload/v1774395950/logo_persija_s9bx8v.webp"
@@ -30,12 +30,12 @@ export function ManagementHeroSection() {
           />
         </div>
 
-        <div className="flex w-full max-w-2xl flex-col items-center gap-3 p-4 text-center drop-shadow-2xl lg:items-start lg:text-left">
+        <div className="flex w-full max-w-2xl flex-col items-center gap-3 p-4 backdrop-blur-sm text-center drop-shadow-2xl lg:items-start lg:text-left">
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-background/70">
             Behind the Club
           </p>
 
-          <h1 className="text-[42px] font-bold uppercase leading-none text-white lg:text-[56px]">
+          <h1 className="text-[24px] font-bold uppercase leading-none text-white lg:text-[56px]">
             Management
           </h1>
 

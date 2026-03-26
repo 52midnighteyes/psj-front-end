@@ -29,7 +29,7 @@ export function PersijaAcademySection() {
             {data.title}
           </h1>
           <p className="leading-6 mb-6">{data.content}</p>
-          <Link to="/service" className="w-full ">
+          <Link to="/academy" className="w-full ">
             <Button className="w-full h-9 hover:scale-105 transition-all duration-300 hover:drop-shadow-2xl font-semibold ">
               Discover More
             </Button>

@@ -31,7 +31,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="flex justify-center gap-x-12 gap-y-3 text-sm lg:flex-col lg:text-right">
+        <div className="flex flex-wrap text-center items-center justify-center gap-x-12 gap-y-3 text-sm lg:flex-col lg:text-right">
           {links.map((item) => (
             <Link
               key={item.name}

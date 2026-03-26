@@ -45,7 +45,7 @@ export function BenefitSection() {
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary opacity-80">
             Persija Academy
           </p>
-          <h2 className="max-w-4xl text-4xl font-bold uppercase leading-none text-foreground sm:text-5xl lg:text-6xl">
+          <h2 className="max-w-4xl text-4xl font-bold uppercase leading-15 text-foreground sm:text-5xl lg:text-6xl">
             Why{" "}
             <span className="border-b-4 border-primary text-primary">
               Persija Academy
