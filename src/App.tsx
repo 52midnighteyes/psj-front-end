@@ -8,6 +8,7 @@ import { AboutUsPage } from "./pages/about-us/about-us-page";
 import { AcademyPage } from "./pages/academy/academy-page";
 import { ManagementPage } from "./pages/management/management-page";
 import BlogListPage from "./pages/blog-list/BlogListPage";
+import CreateBlogPage from "./pages/create-blog/createBlogPage";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/academy" element={<AcademyPage />} />
           <Route path="/management" element={<ManagementPage />} />
           <Route path="/blogs" element={<BlogListPage />} />
+          <Route path="/create-blog" element={<CreateBlogPage />} />
         </Routes>
       </main>
 

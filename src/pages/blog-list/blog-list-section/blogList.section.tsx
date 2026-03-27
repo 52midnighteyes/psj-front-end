@@ -188,7 +188,7 @@ export default function BlogListSection() {
             className="hover:scale-105 transition-all duration-300"
           >
             <div className="flex flex-col h-full bg-background overflow-hidden">
-              <div className="h-auto overflow-hidden ">
+              <div className="max-h-60 overflow-hidden ">
                 <img src={a.image} className="object-cover h-full w-full" />
               </div>
 

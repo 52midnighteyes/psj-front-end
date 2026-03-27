@@ -17,7 +17,7 @@ export default function LoginForm() {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const setSession = useAuthStore((state) => state.setSession);
   const navigate = useNavigate();
-  const onSubmit = async (values: ILoginParams) => {
+  const handleSubmit = async (values: ILoginParams) => {
     try {
       setApiError("");
 
@@ -25,7 +25,7 @@ export default function LoginForm() {
       console.log(response);
       setSession(response.data.user, response.data.accessToken);
       toast("login successful", {
-        position: "top-right",
+        position: "bottom-right",
       });
       navigate("/");
     } catch (error) {
@@ -34,12 +34,12 @@ export default function LoginForm() {
           error.response?.data?.message || "Login failed. Please try again.";
 
         setApiError(message);
-        toast.error(apiError, { position: "top-right" });
+        toast.error(apiError, { position: "bottom-right" });
         return;
       }
 
       setApiError("Something went wrong.");
-      toast.error(apiError, { position: "top-right" });
+      toast.error(apiError, { position: "bottom-right" });
     }
   };
 
@@ -53,7 +53,7 @@ export default function LoginForm() {
       <Formik
         initialValues={{ email: "", password: "" }}
         validationSchema={loginSchema}
-        onSubmit={onSubmit}
+        onSubmit={handleSubmit}
       >
         {({ isSubmitting }) => (
           <Form className="gap-4 flex flex-col w-full justify-start">

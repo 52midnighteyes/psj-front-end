@@ -72,7 +72,7 @@ export default function Navbar() {
 
   const isLoginButton: ILoginButton[] = [
     { name: "LOGOUT", link: "/", onClick: onLogOut },
-    { name: "CREATE BLOG", link: "/auth/register", onClick: null },
+    { name: "CREATE BLOG", link: "/create-blog", onClick: null },
   ];
 
   const [isOpen, setOpen] = useState<boolean>(false);
