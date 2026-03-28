@@ -5,12 +5,11 @@ import { toast } from "sonner";
 export function AppDownload() {
   return (
     <section className="relative overflow-hidden min-h-80 min-w-screen bg-cover bg-primary">
-      <div className="absolute z-1 items-start inset-0 bg-[url('/grad2.png')] opacity-40 bg-cover bg-bottom"></div>
+      <div className="absolute inset-0 z-0 bg-black/25" />{" "}
       <img
         src="https://res.cloudinary.com/dhjorpzhh/image/upload/v1774186912/93aa0233-3564-4a25-986f-932fd06d0962_jifopv.jpg"
         className="absolute inset-0 opacity-20 object-bottom z-0"
       />
-
       <div className="relative gap-5 h-full z-10 w-full flex flex-col text-center p-8 lg:p-20 items-center uppercase font-bold justify-center text-background">
         <div className="mb-4">
           <h1 className="text-[60px]">Persija, in your hands.</h1>

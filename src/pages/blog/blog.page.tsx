@@ -66,8 +66,7 @@ export function BlogPage() {
   return (
     <section className="flex min-h-screen bg-secondary flex-col">
       <div className="relative md:px-22 lg:py-12 p-8 items-end justify-center lg:justify-start flex w-full shrink-0 lg:min-h-150 h-full min-h-100 ">
-        <div className="absolute z-1 inset-0 bg-[url(/grad2.png)] opacity-60 bg-cover bg-bottom"></div>
-
+        <div className="absolute inset-0 z-0 bg-black/25" />
         <img
           src={blog.image}
           alt={blog.title}

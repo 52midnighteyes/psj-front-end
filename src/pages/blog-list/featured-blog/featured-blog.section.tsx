@@ -28,7 +28,7 @@ export default function FeaturedBlogSection() {
 
   if (isError || !isLoaded)
     return (
-      <div className="relative bg-cover bg-no-repeat bg-top flex min-h-160 min-w-screen flex-col lg:px-22 items-center justify-center bg-[url('/13.jpg')] lg:min-h-230 p-6"></div>
+      <div className="relative bg-cover bg-no-repeat bg-top flex min-h-160 min-w-screen flex-col lg:px-22 items-center justify-center bg-[url('https://res.cloudinary.com/dhjorpzhh/image/upload/v1774696359/dsc05368-11772514035_indb1h.jpg')] lg:min-h-230 p-6"></div>
     );
 
   return (

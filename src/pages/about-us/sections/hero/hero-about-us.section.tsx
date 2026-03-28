@@ -19,7 +19,6 @@ export function HeroAboutUsSection() {
         }
       />
 
-      <div className="absolute inset-0 z-0 bg-[url(/grad2.png)] bg-cover bg-bottom opacity-25" />
       <div className="absolute inset-0 z-0 bg-black/25" />
 
       <div className="relative z-20 flex w-full flex-col items-center justify-center gap-10 lg:flex-row lg:gap-20">
