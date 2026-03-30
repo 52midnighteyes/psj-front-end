@@ -7,11 +7,30 @@ import { useEffect, useState } from "react";
 import { MobileNewsCarousel } from "./components/MobileNewsCarousel.props";
 import { Pagination } from "@/components/ui/pagination";
 import { Link } from "react-router";
+import { optimizeCloudinaryImage } from "@/lib/cloudinary";
+
+function getHeroImageUrl(url: string) {
+  return optimizeCloudinaryImage(url, {
+    width: 1920,
+    height: 1080,
+    gravity: "auto",
+  });
+}
+
+function preloadImage(url: string) {
+  return new Promise<void>((resolve, reject) => {
+    const img = new Image();
+    img.src = url;
+    img.onload = () => resolve();
+    img.onerror = () => reject(new Error(`Failed to load image: ${url}`));
+  });
+}
 
 export default function HeroSection() {
   const [counter, setCounter] = useState<number>(0);
-  const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const [blogs, setBlogs] = useState<IBlogListItem[]>([]);
+  const [loadedImages, setLoadedImages] = useState<Record<string, boolean>>({});
+  const [visibleImage, setVisibleImage] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchBlog = async () => {
@@ -28,44 +47,99 @@ export default function HeroSection() {
   }, []);
 
   const activeBlog = blogs[counter];
+  const activeImage = activeBlog ? getHeroImageUrl(activeBlog.image) : null;
 
   useEffect(() => {
     if (blogs.length === 0) return;
 
-    setIsLoaded(false);
+    const firstImage = getHeroImageUrl(blogs[0].image);
+    let isCancelled = false;
 
-    let loadedCount = 0;
+    preloadImage(firstImage)
+      .then(() => {
+        if (isCancelled) return;
 
-    blogs.forEach((src) => {
-      const img = new Image();
-      img.src = src.image;
-      img.onload = () => {
-        loadedCount += 1;
+        setLoadedImages((prev) =>
+          prev[firstImage] ? prev : { ...prev, [firstImage]: true },
+        );
+        setVisibleImage(firstImage);
+      })
+      .catch((error) => {
+        console.error("Failed to preload first hero image:", error);
+      });
 
-        if (loadedCount === blogs.length) {
-          setIsLoaded(true);
-        }
-      };
-    });
+    const timeoutId = window.setTimeout(() => {
+      blogs.slice(1).forEach((blog) => {
+        const imageUrl = getHeroImageUrl(blog.image);
+
+        preloadImage(imageUrl)
+          .then(() => {
+            if (isCancelled) return;
+
+            setLoadedImages((prev) =>
+              prev[imageUrl] ? prev : { ...prev, [imageUrl]: true },
+            );
+          })
+          .catch(() => {});
+      });
+    }, 250);
+
+    return () => {
+      isCancelled = true;
+      window.clearTimeout(timeoutId);
+    };
   }, [blogs]);
 
   useEffect(() => {
-    if (!isLoaded || blogs.length === 0) return;
+    if (!activeImage) return;
+
+    if (loadedImages[activeImage]) {
+      setVisibleImage(activeImage);
+      return;
+    }
+
+    let isCancelled = false;
+
+    preloadImage(activeImage)
+      .then(() => {
+        if (isCancelled) return;
+
+        setLoadedImages((prev) =>
+          prev[activeImage] ? prev : { ...prev, [activeImage]: true },
+        );
+        setVisibleImage(activeImage);
+      })
+      .catch(() => {});
+
+    return () => {
+      isCancelled = true;
+    };
+  }, [activeImage, loadedImages]);
+
+  useEffect(() => {
+    if (!visibleImage || blogs.length <= 1) return;
 
     const interval = setInterval(() => {
       setCounter((prev) => (prev + 1) % blogs.length);
     }, 6000);
 
     return () => clearInterval(interval);
-  }, [isLoaded, counter, blogs.length]);
+  }, [visibleImage, blogs.length]);
 
   return (
-    <section
-      className="relative bg-cover bg-no-repeat bg-top flex min-h-160 min-w-screen flex-col lg:px-22 items-center justify-center bg-primary lg:min-h-230 p-6"
-      style={{
-        backgroundImage: isLoaded ? `url('${activeBlog.image}')` : "none",
-      }}
-    >
+    <section className="relative flex min-h-160 min-w-screen flex-col items-center justify-center overflow-hidden bg-primary lg:min-h-230 lg:px-22 p-6">
+      {visibleImage ? (
+        <img
+          key={visibleImage}
+          src={visibleImage}
+          alt={activeBlog?.title ?? "Latest Persija news"}
+          fetchPriority={counter === 0 ? "high" : "auto"}
+          loading="eager"
+          decoding="async"
+          className="absolute inset-0 z-0 h-full w-full object-cover object-top animate-in fade-in duration-500"
+        />
+      ) : null}
+
       <div className="absolute inset-0 z-0 bg-black/25" />
       {activeBlog && (
         <div className="lg:flex flex-col gap-6 absolute  bottom-1/6 items-start text-background hidden left-22 z-10 min-w-1/5 max-w-3/6 p-4 text-left">
