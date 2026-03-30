@@ -1,15 +1,7 @@
-import { Menu, X } from "lucide-react";
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerTitle,
-  DrawerTrigger,
-} from "./ui/drawer";
+import { lazy, Suspense, useState } from "react";
+import { Menu } from "lucide-react";
 import { Button } from "./ui/button";
 import { Link } from "react-router";
-import { useState } from "react";
 import { useAuthStore } from "@/store/auth/auth.store";
 import { logoutApi } from "@/api/auth/logout.api";
 import { toast } from "sonner";
@@ -36,6 +28,8 @@ interface ILoginButton {
   link: string;
   onClick: (() => void) | null;
 }
+
+const MobileNavDrawer = lazy(() => import("./mobile-nav-drawer.comp"));
 
 export default function Navbar() {
   const clearSession = useAuthStore((state) => state.clearSession);
@@ -115,84 +109,25 @@ export default function Navbar() {
 
       {/* HAMBURGER MENU */}
       <div className="block lg:hidden ">
-        <Drawer direction="top" open={isOpen} onOpenChange={setOpen}>
-          <DrawerTrigger asChild>
-            <button type="button" aria-label="Open navigation menu">
-              <Menu />
-            </button>
-          </DrawerTrigger>
+        <button
+          type="button"
+          aria-label="Open navigation menu"
+          onClick={() => setOpen(true)}
+        >
+          <Menu />
+        </button>
 
-          <DrawerContent
-            className="bg-background px-6 py-0 "
-            onOpenAutoFocus={(e) => {
-              e.preventDefault();
-              const firstLink = document.querySelector(
-                "[data-drawer-first-link]",
-              ) as HTMLElement | null;
-              firstLink?.focus();
-            }}
-          >
-            <DrawerTitle className="sr-only">Navigation menu</DrawerTitle>
-            <DrawerDescription className="sr-only">
-              Mobile navigation drawer
-            </DrawerDescription>
-
-            <div className=" flex items-center justify-between h-20 ">
-              <div className="h-14 flex items-center aspect-square">
-                <img
-                  src={logoSrc}
-                  alt="logo persija jakarta"
-                  className="object-cover"
-                />
-              </div>
-
-              <div className="flex items-center">
-                <DrawerClose asChild>
-                  <button type="button" aria-label="Close navigation menu">
-                    <X />
-                  </button>
-                </DrawerClose>
-              </div>
-            </div>
-
-            <div>
-              {links.map((a, index) => (
-                <div
-                  key={a.name}
-                  className="relative overflow-hidden  h-10 items-center flex justify-between w-full font-semibold group px-4"
-                >
-                  <div className="absolute inset-0 -translate-x-full  bg-primary border-primary group-hover:translate-x-0 transition-all duration-300 ease-in-out"></div>
-
-                  <div className="z-10 flex justify-between w-full group-hover:text-background transition-all duration-1000 group-hover:duration-100 ease-in-out ">
-                    <Link
-                      className="flex justify-between w-full"
-                      to={a.link}
-                      data-drawer-first-link={index === 0 ? true : undefined}
-                      onClick={() => setOpen(false)}
-                    >
-                      {a.name} <span>{`>`}</span>
-                    </Link>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="w-full flex items-center justify-center h-20 gap-5 ">
-              {(isLogin ? isLoginButton : isLogOutButton).map((a) => (
-                <Button
-                  asChild
-                  key={a.name}
-                  onClick={a.onClick ? () => a.onClick?.() : undefined}
-                  className="h-10 w-full hover:scale-105"
-                >
-                  <Link to={a.link} onClick={() => setOpen(false)}>
-                    {a.name}
-                  </Link>
-                </Button>
-              ))}
-            </div>
-          </DrawerContent>
-        </Drawer>
+        {isOpen ? (
+          <Suspense fallback={null}>
+            <MobileNavDrawer
+              isOpen={isOpen}
+              logoSrc={logoSrc}
+              links={links}
+              actionButtons={isLogin ? isLoginButton : isLogOutButton}
+              onOpenChange={setOpen}
+            />
+          </Suspense>
+        ) : null}
       </div>
 
       {/* LOGIN DESKTOP */}

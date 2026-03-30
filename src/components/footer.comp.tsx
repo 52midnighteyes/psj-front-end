@@ -1,3 +1,4 @@
+import { optimizeCloudinaryImage } from "@/lib/cloudinary";
 import { Link } from "react-router";
 
 const links = [
@@ -9,6 +10,11 @@ const links = [
 
 const year = new Date().getFullYear();
 
+const logoSrc = optimizeCloudinaryImage(
+  "https://res.cloudinary.com/dhjorpzhh/image/upload/v1774396224/logo_persija_no_star_z6qj17.webp",
+  { width: 160, crop: "limit" },
+);
+
 export function Footer() {
   return (
     <footer className="min-w-screen relative bottom-0 right-0 bg-foreground text-background">
@@ -16,7 +22,7 @@ export function Footer() {
         <div className="flex max-w-md flex-col items-center gap-4 lg:items-start">
           <img
             src="/persija-dummy.png"
-            alt="Persija Jakarta"
+            alt={logoSrc}
             className="h-16 w-16 object-cover"
           />
 
