@@ -1,3 +1,5 @@
+import { optimizeCloudinaryImage } from "@/lib/cloudinary";
+
 const academyMarquee = [
   "Earn the Badge, Carry the Pride",
   "Where Pride Meets Purpose",
@@ -30,7 +32,10 @@ export function SloganSection({ color }: SponsorsSectionProps) {
       className={`${bgColorClass[color]} relative select-none min-h-12 overflow-hidden`}
     >
       <img
-        src="https://res.cloudinary.com/dhjorpzhh/image/upload/v1774187413/db1084e5-e807-44aa-a085-4d79cec7efda_kdqfg9.jpg"
+        src={optimizeCloudinaryImage(
+          "https://res.cloudinary.com/dhjorpzhh/image/upload/v1774187413/db1084e5-e807-44aa-a085-4d79cec7efda_kdqfg9.jpg",
+          { width: 1600, height: 1200, gravity: "auto" },
+        )}
         className="absolute inset-0 h-full w-full opacity-10 object-cover z-0"
       />
 

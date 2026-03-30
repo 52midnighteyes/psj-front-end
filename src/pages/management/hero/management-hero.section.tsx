@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { optimizeCloudinaryImage } from "@/lib/cloudinary";
 
 export function ManagementHeroSection() {
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
@@ -10,7 +11,10 @@ export function ManagementHeroSection() {
   return (
     <section className="relative flex min-h-160 min-w-screen items-center justify-center overflow-hidden bg-primary px-6 py-25 lg:min-h-230 lg:px-22">
       <img
-        src="https://res.cloudinary.com/dhjorpzhh/image/upload/v1774417280/dsc08718-copy1763215780_cvodhq.jpg"
+        src={optimizeCloudinaryImage(
+          "https://res.cloudinary.com/dhjorpzhh/image/upload/v1774417280/dsc08718-copy1763215780_cvodhq.jpg",
+          { width: 1920, height: 1080, gravity: "auto" },
+        )}
         alt="Persija management background"
         className={
           isLoaded
@@ -24,7 +28,10 @@ export function ManagementHeroSection() {
       <div className="relative z-10 flex w-full flex-col items-end justify-center gap-8 text-background lg:flex-row lg:gap-16">
         <div className="flex w-full max-w-md items-center justify-center overflow-hidden">
           <img
-            src="https://res.cloudinary.com/dhjorpzhh/image/upload/v1774395950/logo_persija_s9bx8v.webp"
+            src={optimizeCloudinaryImage(
+              "https://res.cloudinary.com/dhjorpzhh/image/upload/v1774395950/logo_persija_s9bx8v.webp",
+              { width: 420, crop: "limit" },
+            )}
             alt="Persija Jakarta logo"
             className="w-50 drop-shadow-2xl lg:w-72"
           />

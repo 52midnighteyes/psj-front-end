@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { optimizeCloudinaryImage } from "@/lib/cloudinary";
 
 export function HeroAcademy() {
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
@@ -10,7 +11,10 @@ export function HeroAcademy() {
   return (
     <section className="relative flex min-h-160 min-w-screen items-center justify-center overflow-hidden bg-primary px-6 py-25 lg:min-h-230 lg:px-22">
       <img
-        src="https://res.cloudinary.com/dhjorpzhh/image/upload/v1774417993/Eyes_in_the_sky_%EF%B8%8F_Persija_kawli3.jpg"
+        src={optimizeCloudinaryImage(
+          "https://res.cloudinary.com/dhjorpzhh/image/upload/v1774417993/Eyes_in_the_sky_%EF%B8%8F_Persija_kawli3.jpg",
+          { width: 1920, height: 1080, gravity: "auto" },
+        )}
         alt="Persija Academy background"
         className={
           isLoaded
@@ -24,7 +28,10 @@ export function HeroAcademy() {
       <div className="relative z-10 flex h-full w-full flex-col items-center justify-center gap-8 text-background lg:flex-row-reverse lg:gap-20">
         <div className="w-full overflow-hidden lg:max-w-1/2">
           <img
-            src="https://res.cloudinary.com/dhjorpzhh/image/upload/v1774177418/whatsapp-image-2024-10-20-at-1257061729408157_xevrkj.jpg"
+            src={optimizeCloudinaryImage(
+              "https://res.cloudinary.com/dhjorpzhh/image/upload/v1774177418/whatsapp-image-2024-10-20-at-1257061729408157_xevrkj.jpg",
+              { width: 1920, height: 1300, gravity: "auto" },
+            )}
             alt="Persija Academy player"
             className="h-full w-full scale-105 object-cover drop-shadow-2xl top-0"
           />

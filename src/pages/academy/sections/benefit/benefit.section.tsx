@@ -1,3 +1,5 @@
+import { optimizeCloudinaryImage } from "@/lib/cloudinary";
+
 const featuredPrograms = [
   {
     title: "Clear Curriculum",
@@ -35,7 +37,10 @@ export function BenefitSection() {
   return (
     <section className="relative flex min-h-160 min-w-screen items-center justify-center overflow-hidden bg-background px-6 py-22 lg:min-h-230 lg:px-22">
       <img
-        src="https://res.cloudinary.com/dhjorpzhh/image/upload/v1774247340/1854faaa-ed45-4a79-a0a4-42e6d3d70c76_mgqtuk.jpg"
+        src={optimizeCloudinaryImage(
+          "https://res.cloudinary.com/dhjorpzhh/image/upload/v1774247340/1854faaa-ed45-4a79-a0a4-42e6d3d70c76_mgqtuk.jpg",
+          { width: 1600, height: 1200, gravity: "auto" },
+        )}
         alt="Persija Academy background"
         className="absolute inset-0 z-0 h-full w-full rotate-180 object-cover object-bottom opacity-35"
       />
@@ -61,7 +66,10 @@ export function BenefitSection() {
               className="group overflow-hidden relative flex flex-col items-center justify-center gap-4 rounded-2xl bg-primary p-8 text-center text-background shadow-2xl transition duration-300  hover:scale-110 lg:items-start lg:text-left"
             >
               <img
-                src="https://res.cloudinary.com/dhjorpzhh/image/upload/v1774503303/52645ef9-458d-41c7-b29f-6a41dc6ae5dd_tfcm6x.jpg"
+                src={optimizeCloudinaryImage(
+                  "https://res.cloudinary.com/dhjorpzhh/image/upload/v1774503303/52645ef9-458d-41c7-b29f-6a41dc6ae5dd_tfcm6x.jpg",
+                  { width: 720, height: 720, gravity: "auto" },
+                )}
                 alt=""
                 className="absolute inset-0 z-0 opacity-10 group-hover:scale-110 duration-300 "
               />

@@ -1,3 +1,5 @@
+import { optimizeCloudinaryImage } from "@/lib/cloudinary";
+
 const academyGraduates = [
   {
     avatar:
@@ -41,7 +43,10 @@ export function AlumniSection() {
   return (
     <section className="relative flex min-h-160 min-w-screen items-center justify-center overflow-hidden bg-primary px-6 py-25 lg:min-h-230 lg:px-22">
       <img
-        src="https://res.cloudinary.com/dhjorpzhh/image/upload/v1774187413/db1084e5-e807-44aa-a085-4d79cec7efda_kdqfg9.jpg"
+        src={optimizeCloudinaryImage(
+          "https://res.cloudinary.com/dhjorpzhh/image/upload/v1774187413/db1084e5-e807-44aa-a085-4d79cec7efda_kdqfg9.jpg",
+          { width: 1600, height: 1200, gravity: "auto" },
+        )}
         className="absolute inset-0 h-full w-full opacity-15 object-cover z-0"
       />
 
@@ -67,7 +72,11 @@ export function AlumniSection() {
             >
               <div className="aspect-4/5 w-full overflow-hidden">
                 <img
-                  src={graduate.avatar}
+                  src={optimizeCloudinaryImage(graduate.avatar, {
+                    width: 720,
+                    height: 900,
+                    gravity: "face",
+                  })}
                   alt={graduate.name}
                   className="h-full w-full object-cover object-top group-hover:scale-105 transition duration-500 "
                 />

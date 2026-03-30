@@ -14,6 +14,7 @@ import { useAuthStore } from "@/store/auth/auth.store";
 import { logoutApi } from "@/api/auth/logout.api";
 import { toast } from "sonner";
 import axios from "axios";
+import { optimizeCloudinaryImage } from "@/lib/cloudinary";
 /* 
 kita mau apa di navbar?
 mobile first!
@@ -38,6 +39,10 @@ interface ILoginButton {
 
 export default function Navbar() {
   const clearSession = useAuthStore((state) => state.clearSession);
+  const logoSrc = optimizeCloudinaryImage(
+    "https://res.cloudinary.com/dhjorpzhh/image/upload/v1774396224/logo_persija_no_star_z6qj17.webp",
+    { width: 160, crop: "limit" },
+  );
 
   const onLogOut = async () => {
     try {
@@ -90,7 +95,7 @@ export default function Navbar() {
       <Link to={"/"}>
         <div className="h-16 flex items-center gap-2 lg:h-18 aspect-square text-black">
           <img
-            src="https://res.cloudinary.com/dhjorpzhh/image/upload/v1774396224/logo_persija_no_star_z6qj17.webp"
+            src={logoSrc}
             alt="logo persija jakarta"
             className="object-cover aspect-square h-14 lg:h-18"
           />
@@ -135,7 +140,7 @@ export default function Navbar() {
             <div className=" flex items-center justify-between h-20 ">
               <div className="h-14 flex items-center aspect-square">
                 <img
-                  src="https://res.cloudinary.com/dhjorpzhh/image/upload/v1774396224/logo_persija_no_star_z6qj17.webp"
+                  src={logoSrc}
                   alt="logo persija jakarta"
                   className="object-cover"
                 />

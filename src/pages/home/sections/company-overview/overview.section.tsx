@@ -1,3 +1,5 @@
+import { optimizeCloudinaryImage } from "@/lib/cloudinary";
+
 export function OverviewSection() {
   const companyOverviewData = [
     {
@@ -26,7 +28,10 @@ export function OverviewSection() {
   return (
     <section className="relative pb-20 min-w-screen p-8 lg:px-22 min-h-220 items-start bg-primary flex text-center justify-center">
       <img
-        src="https://res.cloudinary.com/dhjorpzhh/image/upload/v1774187413/db1084e5-e807-44aa-a085-4d79cec7efda_kdqfg9.jpg"
+        src={optimizeCloudinaryImage(
+          "https://res.cloudinary.com/dhjorpzhh/image/upload/v1774187413/db1084e5-e807-44aa-a085-4d79cec7efda_kdqfg9.jpg",
+          { width: 1600, height: 1200, gravity: "auto" },
+        )}
         className="absolute inset-0 h-full w-full opacity-15 object-cover z-0"
       />
 
@@ -52,7 +57,11 @@ export function OverviewSection() {
             >
               <div className=" w-full h-full lg:max-w-2/5 overflow-hidden rounded-2xl ">
                 <img
-                  src={a.image}
+                  src={optimizeCloudinaryImage(a.image, {
+                    width: 720,
+                    height: 720,
+                    gravity: "auto",
+                  })}
                   className="object-cover object-top h-full w-full"
                   alt={`image of ${a.title}`}
                 />

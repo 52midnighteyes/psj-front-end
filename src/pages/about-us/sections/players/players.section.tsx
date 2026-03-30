@@ -1,3 +1,5 @@
+import { optimizeCloudinaryImage } from "@/lib/cloudinary";
+
 export interface IPlayer {
   fullName: string;
   jerseyNumber: number;
@@ -237,7 +239,10 @@ export function PlayerSection() {
   return (
     <section className="relative flex min-h-220 min-w-screen flex-col justify-center overflow-hidden bg-primary px-8 pb-20 pt-16 text-center lg:px-22">
       <img
-        src="https://res.cloudinary.com/dhjorpzhh/image/upload/v1774187413/db1084e5-e807-44aa-a085-4d79cec7efda_kdqfg9.jpg"
+        src={optimizeCloudinaryImage(
+          "https://res.cloudinary.com/dhjorpzhh/image/upload/v1774187413/db1084e5-e807-44aa-a085-4d79cec7efda_kdqfg9.jpg",
+          { width: 1600, height: 1200, gravity: "auto" },
+        )}
         alt=""
         className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover opacity-10"
       />
@@ -260,7 +265,11 @@ export function PlayerSection() {
             >
               <div className="relative h-80 w-full overflow-hidden lg:h-104">
                 <img
-                  src={player.avatar}
+                  src={optimizeCloudinaryImage(player.avatar, {
+                    width: 720,
+                    height: 960,
+                    gravity: "face",
+                  })}
                   alt={player.fullName}
                   className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                 />

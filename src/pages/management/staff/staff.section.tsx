@@ -3,6 +3,7 @@ import {
   type IUserCard,
 } from "@/api/randomuser/randomuser.api";
 import { useEffect, useState } from "react";
+import { optimizeCloudinaryImage } from "@/lib/cloudinary";
 
 export function StaffSection() {
   const [staff, setStaff] = useState<IUserCard[]>([]);
@@ -31,7 +32,10 @@ export function StaffSection() {
   return (
     <section className="relative flex min-h-screen min-w-screen items-start justify-center bg-primary px-6 py-20 lg:px-22">
       <img
-        src="https://res.cloudinary.com/dhjorpzhh/image/upload/v1774187413/db1084e5-e807-44aa-a085-4d79cec7efda_kdqfg9.jpg"
+        src={optimizeCloudinaryImage(
+          "https://res.cloudinary.com/dhjorpzhh/image/upload/v1774187413/db1084e5-e807-44aa-a085-4d79cec7efda_kdqfg9.jpg",
+          { width: 1600, height: 1200, gravity: "auto" },
+        )}
         alt=""
         className="absolute inset-0 z-0 h-full w-full object-cover opacity-15"
       />

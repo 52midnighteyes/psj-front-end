@@ -1,13 +1,17 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { toast } from "sonner";
+import { optimizeCloudinaryImage } from "@/lib/cloudinary";
 
 export function AppDownload() {
   return (
     <section className="relative overflow-hidden min-h-80 min-w-screen bg-cover bg-primary">
       <div className="absolute inset-0 z-0 bg-black/25" />{" "}
       <img
-        src="https://res.cloudinary.com/dhjorpzhh/image/upload/v1774186912/93aa0233-3564-4a25-986f-932fd06d0962_jifopv.jpg"
+        src={optimizeCloudinaryImage(
+          "https://res.cloudinary.com/dhjorpzhh/image/upload/v1774186912/93aa0233-3564-4a25-986f-932fd06d0962_jifopv.jpg",
+          { width: 1600, height: 800, gravity: "auto" },
+        )}
         className="absolute inset-0 opacity-20 object-bottom z-0"
       />
       <div className="relative gap-5 h-full z-10 w-full flex flex-col text-center p-8 lg:p-20 items-center uppercase font-bold justify-center text-background">

@@ -19,6 +19,7 @@ import {
 import { BLOG_CATEGORIES } from "../blog-list/blog-list-section/blogList.section";
 import { Button } from "@/components/ui/button";
 import api from "@/lib/axios.lib";
+import { optimizeCloudinaryImage } from "@/lib/cloudinary";
 
 export interface ICreateBlogParams {
   file: File | null;
@@ -76,7 +77,10 @@ export default function CreateBlogPage() {
   return (
     <section className="relative min-h-screen min-w-screen px-6 pb-20 pt-30 lg:px-22">
       <img
-        src="https://res.cloudinary.com/dhjorpzhh/image/upload/v1774247340/1854faaa-ed45-4a79-a0a4-42e6d3d70c76_mgqtuk.jpg"
+        src={optimizeCloudinaryImage(
+          "https://res.cloudinary.com/dhjorpzhh/image/upload/v1774247340/1854faaa-ed45-4a79-a0a4-42e6d3d70c76_mgqtuk.jpg",
+          { width: 1600, height: 1200, gravity: "auto" },
+        )}
         alt=""
         className="absolute inset-0 z-0 w-full h-full opacity-20"
       />

@@ -1,3 +1,5 @@
+import { optimizeCloudinaryImage } from "@/lib/cloudinary";
+
 const sponsors = [
   {
     name: "TCT",
@@ -126,7 +128,11 @@ export function SponsorsSection({ color }: SponsorsSectionProps) {
             className="shrink-0 hover:scale-105 transition-transform"
           >
             <img
-              src={sponsor.image}
+              src={optimizeCloudinaryImage(sponsor.image, {
+                width: 240,
+                height: 96,
+                crop: "fit",
+              })}
               alt={sponsor.name}
               className="h-12 w-auto object-contain"
             />

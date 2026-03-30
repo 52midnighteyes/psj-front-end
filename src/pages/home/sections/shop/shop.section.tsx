@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { optimizeCloudinaryImage } from "@/lib/cloudinary";
 
 export const products = [
   {
@@ -24,7 +25,10 @@ export function ShopSection() {
         GET <span className="text-primary">YOURS!</span>
       </p>
       <img
-        src="https://res.cloudinary.com/dhjorpzhh/image/upload/v1774187413/db1084e5-e807-44aa-a085-4d79cec7efda_kdqfg9.jpg"
+        src={optimizeCloudinaryImage(
+          "https://res.cloudinary.com/dhjorpzhh/image/upload/v1774187413/db1084e5-e807-44aa-a085-4d79cec7efda_kdqfg9.jpg",
+          { width: 1600, height: 1200, gravity: "auto" },
+        )}
         className="absolute inset-0 h-full w-full opacity-10 object-cover z-0"
       />
       <div className=" relative z-10 mx-auto flex max-w-7xl flex-col gap-8 lg:flex-row">
@@ -35,7 +39,11 @@ export function ShopSection() {
           >
             <div className="aspect-square w-full overflow-hidden">
               <img
-                src={product.image}
+                src={optimizeCloudinaryImage(product.image, {
+                  width: 900,
+                  height: 900,
+                  gravity: "auto",
+                })}
                 alt={product.name}
                 className="h-full w-full object-cover object-top"
               />

@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router";
+import { optimizeCloudinaryImage } from "@/lib/cloudinary";
 
 export function PersijaAcademySection() {
   const data = {
@@ -12,13 +13,20 @@ export function PersijaAcademySection() {
   return (
     <section className="relative min-w-screen p-8 lg:px-22 min-h-200 items-center overflow-hidden bg-secondary flex text-center justify-center ">
       <img
-        src="https://res.cloudinary.com/dhjorpzhh/image/upload/v1774247340/1854faaa-ed45-4a79-a0a4-42e6d3d70c76_mgqtuk.jpg"
+        src={optimizeCloudinaryImage(
+          "https://res.cloudinary.com/dhjorpzhh/image/upload/v1774247340/1854faaa-ed45-4a79-a0a4-42e6d3d70c76_mgqtuk.jpg",
+          { width: 1600, height: 1200, gravity: "auto" },
+        )}
         className="absolute inset-0 h-full w-full opacity-26 object-bottom object-cover z-0 rotate-180"
       />
       <div className="w-full h-full flex flex-col gap-4 lg:gap-12 relative z-10 justify-center items-center lg:flex-row">
         <div className="relative z-0 max-w-180 lg:max-w-1/2">
           <img
-            src={data.image}
+            src={optimizeCloudinaryImage(data.image, {
+              width: 960,
+              height: 1200,
+              gravity: "auto",
+            })}
             alt="persija academy"
             className="object-cover object-center w-full h-full drop-shadow-2xl rounded-2xl"
           />

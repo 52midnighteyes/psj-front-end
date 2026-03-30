@@ -4,11 +4,16 @@ import {
 } from "@/api/blog/takeFiveBlogs.api";
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
+import { optimizeCloudinaryImage } from "@/lib/cloudinary";
 
 export default function FeaturedBlogSection() {
   const [blog, setBlog] = useState<IBlogListItem | null>(null);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
+  const fallbackImage = optimizeCloudinaryImage(
+    "https://res.cloudinary.com/dhjorpzhh/image/upload/v1774696359/dsc05368-11772514035_indb1h.jpg",
+    { width: 1920, height: 1080, gravity: "auto" },
+  );
 
   useEffect(() => {
     const getBlog = async () => {
@@ -28,14 +33,17 @@ export default function FeaturedBlogSection() {
 
   if (isError || !isLoaded)
     return (
-      <div className="relative bg-cover bg-no-repeat bg-top flex min-h-160 min-w-screen flex-col lg:px-22 items-center justify-center bg-[url('https://res.cloudinary.com/dhjorpzhh/image/upload/v1774696359/dsc05368-11772514035_indb1h.jpg')] lg:min-h-230 p-6"></div>
+      <div
+        className="relative bg-cover bg-no-repeat bg-top flex min-h-160 min-w-screen flex-col lg:px-22 items-center justify-center lg:min-h-230 p-6"
+        style={{ backgroundImage: `url('${fallbackImage}')` }}
+      ></div>
     );
 
   return (
     <section
       className="relative bg-cover bg-no-repeat bg-top flex min-h-160 min-w-screen flex-col lg:px-22 items-center justify-center bg-primary lg:min-h-230 p-6"
       style={{
-        backgroundImage: `url('${blog?.image}')`,
+        backgroundImage: `url('${blog?.image ? optimizeCloudinaryImage(blog.image, { width: 1920, height: 1080, gravity: "auto" }) : fallbackImage}')`,
       }}
     >
       <div className="absolute inset-0 bg-black/45" />
