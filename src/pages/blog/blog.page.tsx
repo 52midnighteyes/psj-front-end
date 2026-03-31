@@ -7,6 +7,20 @@ import {
 } from "@/api/blog/takeFiveBlogs.api";
 import { Skeleton } from "@/components/ui/skeleton";
 import { MobileNewsCarousel } from "../home/sections/hero/components/MobileNewsCarousel.props";
+import { Seo } from "@/components/seo.comp";
+import { optimizeCloudinaryImage } from "@/lib/cloudinary";
+
+function createBlogDescription(blog: IBlog | null) {
+  if (!blog) {
+    return "Read the latest article from Persija Jakarta.";
+  }
+
+  return (
+    blog.excerpt ||
+    blog.content.replace(/\s+/g, " ").trim().slice(0, 155) ||
+    "Read the latest article from Persija Jakarta."
+  );
+}
 
 export function BlogPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -55,6 +69,11 @@ export function BlogPage() {
   if (!blog)
     return (
       <section className="min-w-screen min-h-screen flex flex-col items-center justify-center bg-secondary">
+        <Seo
+          title="Loading Article"
+          description="Loading the latest Persija Jakarta article."
+          path={slug ? `/blog/${slug}` : "/blog"}
+        />
         <div className="flex w-full max-w-xs flex-col gap-2">
           <Skeleton className="bg-primary/80 h-4 w-full" />
           <Skeleton className="bg-primary/80 h-4 w-full" />
@@ -65,6 +84,48 @@ export function BlogPage() {
 
   return (
     <section className="flex min-h-screen bg-secondary flex-col">
+      <Seo
+        title={blog.title}
+        description={createBlogDescription(blog)}
+        path={`/blog/${blog.slug}`}
+        type="article"
+        image={optimizeCloudinaryImage(blog.image, {
+          width: 1200,
+          height: 630,
+          gravity: "auto",
+        })}
+        keywords={[
+          "Persija article",
+          "Persija news",
+          blog.category,
+          blog.author,
+          blog.title,
+        ]}
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "NewsArticle",
+          headline: blog.title,
+          image: [
+            optimizeCloudinaryImage(blog.image, {
+              width: 1200,
+              height: 630,
+              gravity: "auto",
+            }),
+          ],
+          datePublished: blog.createdAt,
+          dateModified: blog.updatedAt || blog.createdAt,
+          author: {
+            "@type": "Person",
+            name: blog.author,
+          },
+          publisher: {
+            "@type": "Organization",
+            name: "Persija Jakarta",
+          },
+          description: createBlogDescription(blog),
+          mainEntityOfPage: `/blog/${blog.slug}`,
+        }}
+      />
       <div className="relative md:px-22 lg:py-12 p-8 items-end justify-center lg:justify-start flex w-full shrink-0 lg:min-h-150 h-full min-h-100 ">
         <div className="absolute inset-0 z-0 bg-black/25" />
         <img
