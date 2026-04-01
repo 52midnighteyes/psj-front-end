@@ -1,5 +1,5 @@
 import { lazy, Suspense } from "react";
-import { Route, Routes } from "react-router";
+import { Link, Route, Routes } from "react-router";
 import Navbar from "./components/navbar.comp";
 import { Footer } from "./components/footer.comp";
 
@@ -40,6 +40,30 @@ function RouteFallback() {
   );
 }
 
+function NotFoundPage() {
+  return (
+    <section className="flex min-h-[60vh] w-full items-center justify-center bg-secondary px-6 py-16">
+      <div className="flex max-w-xl flex-col items-center gap-4 text-center">
+        <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary">
+          404 Error
+        </p>
+        <h1 className="text-4xl font-black uppercase text-foreground lg:text-6xl">
+          Page Not Found
+        </h1>
+        <p className="max-w-md text-sm text-muted-foreground lg:text-base">
+          Halaman yang kamu cari nggak tersedia atau mungkin URL-nya salah.
+        </p>
+        <Link
+          to="/"
+          className="rounded-md bg-primary px-5 py-3 text-sm font-semibold uppercase text-primary-foreground transition-opacity hover:opacity-90"
+        >
+          Back to Home
+        </Link>
+      </div>
+    </section>
+  );
+}
+
 function App() {
   return (
     <div className="min-h-screen flex flex-col">
@@ -56,6 +80,7 @@ function App() {
             <Route path="/management" element={<ManagementPage />} />
             <Route path="/blogs" element={<BlogListPage />} />
             <Route path="/create-blog" element={<CreateBlogPage />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>
       </main>
