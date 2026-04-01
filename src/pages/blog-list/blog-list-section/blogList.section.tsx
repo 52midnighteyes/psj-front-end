@@ -46,7 +46,7 @@ export const BLOG_CATEGORIES = [
 export default function BlogListSection() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [blogs, setBlogs] = useState<IBlogListItem[]>([]);
-  const [srch, setSrch] = useState<string>("");
+  const [srch, setSrch] = useState<string>(searchParams.get("search") || "");
   const [meta, setMeta] = useState<IPaginationMeta | null>(null);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
@@ -72,7 +72,12 @@ export default function BlogListSection() {
   };
 
   useEffect(() => {
+    setSrch(search);
+  }, [search]);
+
+  useEffect(() => {
     const getBlog = async () => {
+      setIsLoaded(false);
       const response = await searchBlogByParams({
         ...(search && { search }),
         ...(category && { category }),
@@ -94,7 +99,7 @@ export default function BlogListSection() {
     };
 
     getBlog();
-  }, [searchParams]);
+  }, [search, category, page, sortBy, sortOrder]);
 
   if (!isLoaded || !meta)
     return (
@@ -114,7 +119,7 @@ export default function BlogListSection() {
           }}
         >
           <Input
-            value={search}
+            value={srch}
             className="bg-background"
             onChange={(a) => {
               setSrch(a.target.value);
